@@ -12,29 +12,28 @@ baseline_temp = 23
 thermometer.when_data_received do |data|
   voltage = (data.to_f / 1024.0) * 5
   temperature = (voltage - 0.5) * 100
-  # temp_f = (temp_c * 1.8) + 32
 
   puts "Temperature: #{temperature.round(2)} C"
 
   if temperature < baseline_temp + 2
-    led2.send(:off)
-    led3.send(:off)
-    led4.send(:off)
+    led2.off
+    led3.off
+    led4.off
   elsif temperature > baseline_temp + 2 && temperature < baseline_temp + 4
-    led2.send(:on)
-    led3.send(:off)
-    led4.send(:off)
+    led2.on
+    led3.off
+    led4.off
   elsif temperature > baseline_temp + 4 && temperature < baseline_temp + 6
-    led2.send(:on)
-    led3.send(:on)
-    led4.send(:off)
+    led2.on
+    led3.on
+    led4.off
   elsif temperature > baseline_temp + 6
-    led2.send(:on)
-    led3.send(:on)
-    led4.send(:on)
+    led2.on
+    led3.on
+    led4.on
   end
 
   sleep 1
 end
 
-sleep 5
+sleep
